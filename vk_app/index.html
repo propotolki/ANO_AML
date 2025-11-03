@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>АНО Академия Молодых Лидеров</title>
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle fill='%23FF3B30' cx='50' cy='50' r='50'/></svg>">
+</head>
+<body>
+  <div id="app">
+    <header class="aml-header">
+      <h1>АНО Академия Молодых Лидеров</h1>
+      <p class="subtitle">Начни по-настоящему</p>
+    </header>
+
+    <main class="aml-content">
+      <section class="card">
+        <h2>Миссия</h2>
+        <p>Помочь молодежи и студентам СПО развить навыки для построения карьеры мечты или открытия собственного дела через практико-ориентированный подход.</p>
+      </section>
+
+      <section class="grid">
+        <div class="pill pill-red">Лидерство</div>
+        <div class="pill pill-blue">Команда</div>
+        <div class="pill pill-green">Рост</div>
+        <div class="pill pill-yellow">Опыт</div>
+        <div class="pill pill-purple">Креатив</div>
+        <div class="pill pill-orange">Проекты</div>
+        <div class="pill pill-black">Фокус</div>
+        <div class="pill pill-white">Открытость</div>
+      </section>
+
+      <section class="card">
+        <h2>Навигация</h2>
+        <div class="btns">
+          <button class="btn" data-action="mission">Миссия</button>
+          <button class="btn" data-action="program">Программа</button>
+          <button class="btn" data-action="register">Регистрация</button>
+        </div>
+      </section>
+
+      <section class="card" id="section-output" hidden>
+        <h2 id="output-title"></h2>
+        <p id="output-text"></p>
+      </section>
+    </main>
+
+    <footer class="aml-footer">АНО "Академия Молодых Лидеров" © 2025</footer>
+  </div>
+
+  <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+  <script src="./main.js"></script>
+  <script>
+    // Инициализация VK Bridge для корректной интеграции в Mini Apps
+    if (window.vkBridge) {
+      vkBridge.send('VKWebAppInit');
+      // Темы: подхватываем системную тему ВК
+      vkBridge.subscribe((e) => {
+        if (e.detail && e.detail.type === 'VKWebAppUpdateConfig') {
+          const scheme = e.detail.data?.scheme || 'bright_light';
+          document.documentElement.setAttribute('scheme', scheme);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
+
